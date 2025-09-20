@@ -6,3 +6,6 @@ This repo documents my journey of learning **Swift** in aabout 30 days. Each day
 
 **Code**
 print("Hello World")
+
+
+#Day-2 Variables, Constants, Data Types
