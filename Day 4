@@ -1,0 +1,111 @@
+
+Day 4: Advanced Swift Basics & Intermediate Concepts
+
+1. Closures
+- Anonymous functions, often used as callbacks.
+- Syntax:
+let greet = { (name: String) -> String in
+    return "Hello, \(name)!"
+}
+print(greet("Mayank"))  // Hello, Mayank!
+
+- Shorthand closure syntax:
+let numbers = [1, 2, 3, 4]
+let squared = numbers.map { $0 * $0 }
+print(squared)  // [1, 4, 9, 16]
+
+
+2. Enumerations (Enums)
+- Define a type with a fixed set of values.
+- Example:
+enum Direction {
+    case north, south, east, west
+}
+var dir = Direction.north
+dir = .south
+
+- Enums can have associated values:
+enum Result {
+    case success(data: String)
+    case failure(error: String)
+}
+let res = Result.success(data: "File Loaded")
+
+
+3. Structs and Classes
+- Structs: Value types (copied when passed).
+- Classes: Reference types (shared when passed).
+struct PersonStruct {
+    var name: String
+    var age: Int
+}
+class PersonClass {
+    var name: String
+    var age: Int
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+}
+
+- Key difference: struct is copied, class is referenced.
+
+
+4. Properties
+- Stored Properties: Hold actual data.
+- Computed Properties: Calculate value on demand.
+struct Rectangle {
+    var width: Double
+    var height: Double
+    var area: Double {
+        return width * height
+    }
+}
+let rect = Rectangle(width: 5, height: 10)
+print(rect.area)  // 50
+
+- Property Observers: willSet and didSet
+var score: Int = 0 {
+    didSet {
+        print("Score changed to \(score)")
+    }
+}
+score = 10
+
+
+5. Optionals (Deep Dive)
+- Avoid runtime crashes due to nil.
+- Optional binding:
+var name: String? = "Mayank"
+if let unwrappedName = name {
+    print(unwrappedName)
+}
+
+- Nil coalescing operator:
+let username = name ?? "Guest"
+print(username)  // Mayank
+
+
+6. Error Handling
+- Swift uses do-catch for errors.
+enum FileError: Error {
+    case notFound, unreadable
+}
+func readFile(name: String) throws {
+    if name != "data.txt" {
+        throw FileError.notFound
+    }
+    print("File read successfully")
+}
+do {
+    try readFile(name: "file.txt")
+} catch {
+    print(error)  // notFound
+}
+
+
+7. Practice Tasks
+1. Write a closure to filter even numbers from an array.
+2. Create an enum for TrafficLight and print messages based on its value.
+3. Make a struct for Car with a computed property description.
+4. Implement error handling for a simple function that divides two numbers (throw error if dividing by zero).
