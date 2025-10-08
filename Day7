@@ -1,0 +1,124 @@
+Day 7: Object-Oriented Swift – Classes, Inheritance & Protocols
+
+1. Classes (Deep Dive)
+- Classes are reference types (shared in memory).
+class Animal {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    func speak() {
+        print("\(name) makes a sound")
+    }
+}
+
+let dog = Animal(name: "Dog")
+dog.speak()  // Dog makes a sound
+
+
+2. Inheritance
+- A class can inherit from another.
+class Dog: Animal {
+    var breed: String
+    
+    init(name: String, breed: String) {
+        self.breed = breed
+        super.init(name: name)
+    }
+    
+    override func speak() {
+        print("\(name) barks")
+    }
+}
+
+let myDog = Dog(name: "Tommy", breed: "Labrador")
+myDog.speak()  // Tommy barks
+
+
+3. Method Overriding & Super
+- Child classes can override parent methods using override.
+- Use super to call parent implementation.
+class Cat: Animal {
+    override func speak() {
+        super.speak()
+        print("\(name) meows")
+    }
+}
+let cat = Cat(name: "Kitty")
+cat.speak()
+// Kitty makes a sound
+// Kitty meows
+
+
+4. Initialization & Deinitialization
+- Classes have init and deinit methods.
+class FileHandler {
+    init() {
+        print("File opened")
+    }
+    deinit {
+        print("File closed")
+    }
+}
+var handler: FileHandler? = FileHandler()
+handler = nil  // triggers deinit
+
+
+5. Protocols (Swift's Interfaces)
+- Define a blueprint of methods/properties.
+protocol Drivable {
+    var speed: Int { get set }
+    func drive()
+}
+
+class Car: Drivable {
+    var speed: Int = 0
+    func drive() {
+        print("Driving at \(speed) km/h")
+    }
+}
+
+let car = Car()
+car.speed = 60
+car.drive()  // Driving at 60 km/h
+
+
+6. Protocol Inheritance & Multiple Conformance
+protocol Electric {
+    func charge()
+}
+protocol Vehicle: Drivable, Electric {}
+
+class Tesla: Vehicle {
+    var speed: Int = 0
+    func drive() {
+        print("Tesla driving at \(speed) km/h")
+    }
+    func charge() {
+        print("Tesla charging...")
+    }
+}
+let tesla = Tesla()
+tesla.speed = 100
+tesla.drive()
+tesla.charge()
+
+
+7. Extensions
+- Add functionality to existing types.
+extension Int {
+    func squared() -> Int {
+        return self * self
+    }
+}
+print(5.squared())  // 25
+
+
+8. Practice Tasks
+1. Create a base class Shape with area() method and subclasses Circle & Rectangle overriding it.
+2. Write a class BankAccount with deposit and withdraw methods.
+3. Define a protocol Playable with a play() method. Create two classes (Video, Audio) conforming to it.
+4. Extend String with a method isPalindrome() returning true if the string is a palindrome.
+5. Demonstrate deinit by printing a message when an object is destroyed.
