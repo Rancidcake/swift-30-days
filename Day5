@@ -1,0 +1,90 @@
+Day 5: Collections & Advanced Control Flow
+
+1. Arrays (Deep Dive)
+- Arrays are ordered collections of values.
+var fruits = ["Apple", "Banana", "Mango"]
+fruits.append("Orange")
+print(fruits[0])  // Apple
+
+for fruit in fruits {
+    print(fruit)
+}
+
+print(fruits.count)       // number of items
+print(fruits.isEmpty)     // check empty
+fruits.remove(at: 1)      // remove Banana
+
+
+2. Dictionaries
+- Store key-value pairs.
+var studentMarks: [String: Int] = [
+    "Alice": 85,
+    "Bob": 90,
+    "Charlie": 78
+]
+print(studentMarks["Bob"]!) // 90
+studentMarks["David"] = 92
+
+for (name, marks) in studentMarks {
+    print("\(name): \(marks)")
+}
+
+
+3. Sets
+- Unordered collections of unique values.
+var uniqueNumbers: Set = [1, 2, 3, 3, 4]
+print(uniqueNumbers) // {1,2,3,4}
+uniqueNumbers.insert(5)
+uniqueNumbers.remove(2)
+
+let odd: Set = [1, 3, 5, 7]
+let even: Set = [2, 4, 6, 8]
+print(odd.union(even))         // all numbers
+print(odd.intersection(even))  // empty set
+
+
+4. Advanced Control Flow
+[1, 2, 3, 4].forEach { num in
+    print(num * 2)
+}
+
+var i = 0
+while i < 3 {
+    print(i)
+    i += 1
+}
+
+var j = 0
+repeat {
+    print(j)
+    j += 1
+} while j < 3
+
+
+5. Guard Statement
+func greetUser(name: String?) {
+    guard let username = name else {
+        print("No name provided")
+        return
+    }
+    print("Hello, \(username)")
+}
+greetUser(name: nil)      // No name provided
+greetUser(name: "Mayank") // Hello, Mayank
+
+
+6. Tuples
+let person = ("Mayank", 21)
+print(person.0)  // Mayank
+print(person.1)  // 21
+
+let student = (name: "Alice", marks: 92)
+print(student.name)  // Alice
+
+
+7. Practice Tasks
+1. Create an array of 10 numbers and print only the odd ones.
+2. Make a dictionary of 5 students with marks. Find the highest.
+3. Use a set to store unique words from an array like ["cat", "dog", "cat"].
+4. Write a function using guard to check if a user is logged in.
+5. Create a tuple representing a Book (title, author, price) and print it.
