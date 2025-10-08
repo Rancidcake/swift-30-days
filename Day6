@@ -1,0 +1,105 @@
+Day 6: Functions, Higher-Order Functions & Advanced Optionals
+
+1. Functions (Deep Dive)
+- Functions can take parameters and return values.
+func add(a: Int, b: Int) -> Int {
+    return a + b
+}
+print(add(a: 3, b: 5))  // 8
+
+- Functions with default parameters:
+func greet(name: String = "Guest") {
+    print("Hello, \(name)")
+}
+greet()           // Hello, Guest
+greet(name: "Mayank") // Hello, Mayank
+
+- Variadic parameters:
+func sum(_ numbers: Int...) -> Int {
+    return numbers.reduce(0, +)
+}
+print(sum(1, 2, 3, 4))  // 10
+
+
+2. Inout Parameters
+- Allow modifying the original variable inside the function.
+func increment(value: inout Int) {
+    value += 1
+}
+var num = 10
+increment(value: &num)
+print(num)  // 11
+
+
+3. Higher-Order Functions
+- Functions that take other functions as input or return them.
+
+map:
+let nums = [1, 2, 3, 4]
+let doubled = nums.map { $0 * 2 }
+print(doubled)  // [2, 4, 6, 8]
+
+filter:
+let evens = nums.filter { $0 % 2 == 0 }
+print(evens)  // [2, 4]
+
+reduce:
+let total = nums.reduce(0, +)
+print(total)  // 10
+
+
+4. Advanced Optionals
+- Force unwrapping (not recommended):
+var name: String? = "Swift"
+print(name!)  // Swift
+
+- Optional binding with if let:
+if let n = name {
+    print("Hello, \(n)")
+}
+
+- Optional binding with guard let:
+func showName(_ input: String?) {
+    guard let validName = input else {
+        print("No name found")
+        return
+    }
+    print("Welcome, \(validName)")
+}
+showName(nil)        // No name found
+showName("Mayank")   // Welcome, Mayank
+
+
+5. Nil-Coalescing & Optional Chaining
+- Nil coalescing:
+let nickname: String? = nil
+let displayName = nickname ?? "Anonymous"
+print(displayName)  // Anonymous
+
+- Optional chaining:
+struct Address {
+    var city: String
+}
+struct User {
+    var address: Address?
+}
+let user = User(address: Address(city: "Pune"))
+print(user.address?.city ?? "Unknown") // Pune
+
+
+6. Nested Functions
+func outerFunction() {
+    func innerFunction() {
+        print("I am inside!")
+    }
+    innerFunction()
+}
+outerFunction()
+
+
+7. Practice Tasks
+1. Write a function that returns factorial of a number using recursion.
+2. Use map to convert an array of Celsius values into Fahrenheit.
+3. Use filter to find names longer than 4 letters in an array.
+4. Create a function with an inout parameter to swap two integers.
+5. Use optional chaining to safely access a property of a nested struct.
